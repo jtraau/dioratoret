@@ -4,6 +4,11 @@ import EscapeToHome from "@/components/global/EscapeToHome";
 
 import "./globals.css";
 
+export const metadata = {
+  title: "Dioratoret",
+  description: "Dioratoret - Commercial Art",
+};
+
 export default function RootLayout({
   children,
 }: {
