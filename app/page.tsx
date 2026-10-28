@@ -1,65 +1,82 @@
+"use client";
+
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
+const navItems = [
+  { label: "ABOUT ME", path: "/about-me" },
+  { label: "GALLERY", path: "/gallery" },
+  { label: "HOW TO ORDER", path: "/how-to-order" },
+];
 
 export default function Home() {
+  const router = useRouter();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <section className="relative">
+        <div className="relative h-40 w-full sm:h-52 md:h-60 lg:h-70">
+          <Image
+            src="/img/Bingkai1.png"
+            alt="Bingkai Dioratoret"
+            width={1920}
+            height={280}
+            priority
+            sizes="100vw"
+            className="
+              absolute inset-0 h-full w-full object-cover object-left
+              mask-[linear-gradient(to_right,rgba(0,0,0,1),rgba(0,0,0,0.3))]
+              [-webkit-mask-image:linear-gradient(to_right,rgba(0,0,0,1),rgba(0,0,0,0.3))]
+            "
+          />
+
+          <Image
+            src="/img/Profil.jpg"
+            alt="Budi Santoso"
+            width={200}
+            height={200}
+            draggable={false}
+            sizes="(max-width: 639px) 96px, (max-width: 1023px) 160px, 200px"
+            className="
+              absolute -top-4 right-4 z-10
+              h-24 w-24 rounded-full object-cover
+              transition-transform duration-300 hover:scale-110
+              sm:-top-8 sm:right-8 sm:h-32 sm:w-32
+              md:right-16 md:h-40 md:w-40
+              lg:-top-20 lg:right-[18%] lg:h-50 lg:w-50
+            "
+          />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      </section>
+
+      <nav
+        aria-label="Main navigation"
+        className="
+          relative mx-4 mt-6 flex flex-col gap-3 text-white
+          sm:mx-8 sm:mt-10 sm:flex-row sm:flex-wrap sm:justify-center
+          md:justify-between
+          lg:mx-16 lg:mt-16
+          xl:mx-30 xl:mt-20
+        "
+      >
+        {navItems.map((item) => (
+          <button
+            key={item.path}
+            type="button"
+            onClick={() => router.push(item.path)}
+            className="
+              w-full cursor-pointer rounded-2xl
+              bg-[url('/img/NameTag_BTN.jpg')] bg-cover bg-center
+              px-4 py-3 text-base font-bold text-black
+              transition-transform duration-300 hover:scale-[1.1]
+              sm:w-auto sm:px-5 sm:py-4 sm:text-xl
+              lg:text-2xl
+            "
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            {item.label}
+          </button>
+        ))}
+      </nav>
+    </>
   );
 }
